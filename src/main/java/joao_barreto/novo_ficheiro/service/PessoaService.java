@@ -25,9 +25,44 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
+    public Pessoa updatePessoa(Long id, Pessoa novaPessoa) {
+        Pessoa pessoaExistente = readPessoa(id);
+
+        pessoaExistente.setNome(novaPessoa.getNome());
+        pessoaExistente.setIdade(novaPessoa.getIdade());
+        pessoaExistente.setEmpregado(novaPessoa.isEmpregado());
+        pessoaExistente.setTrabalho(novaPessoa.getTrabalho());
+
+        return pessoaRepository.save(pessoaExistente);
+    }
+
+    public Pessoa patchPessoa(Long id, Pessoa novaPessoa) {
+        Pessoa pessoaExistente = readPessoa(id);
+
+        if (novaPessoa.getNome() != null) {
+            pessoaExistente.setNome(novaPessoa.getNome());
+        }
+
+        if (novaPessoa.getIdade() != 0) {
+            pessoaExistente.setIdade(novaPessoa.getIdade());
+        }
+
+        if (novaPessoa.getTrabalho() != null) {
+            pessoaExistente.setTrabalho(novaPessoa.getTrabalho());
+        }
+
+        pessoaExistente.setEmpregado(novaPessoa.isEmpregado());
+
+        return pessoaRepository.save(pessoaExistente);
+    }
+
     public void deletePessoa(Long id) {
         Pessoa pessoa = readPessoa(id);
 
         pessoaRepository.delete(pessoa);
+    }
+
+    public void deleteAllPessoas() {
+        pessoaRepository.deleteAll();
     }
 }
