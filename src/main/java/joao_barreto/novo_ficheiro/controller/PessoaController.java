@@ -53,7 +53,7 @@ public class PessoaController {
         response.put("message:", "pessoa removida com sucesso.");
         response.put("status:", "complete");
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping
