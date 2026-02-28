@@ -24,5 +24,5 @@ public class Pessoa {
     @Max(value = 120, message = "Idade acima do limite.")
     private int idade;
 
-    private boolean empregado;
+    private Boolean empregado;
 }

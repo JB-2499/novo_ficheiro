@@ -30,7 +30,7 @@ public class PessoaService {
 
         pessoaExistente.setNome(novaPessoa.getNome());
         pessoaExistente.setIdade(novaPessoa.getIdade());
-        pessoaExistente.setEmpregado(novaPessoa.isEmpregado());
+        pessoaExistente.setEmpregado(novaPessoa.getEmpregado());
         pessoaExistente.setTrabalho(novaPessoa.getTrabalho());
 
         return pessoaRepository.save(pessoaExistente);
@@ -51,7 +51,9 @@ public class PessoaService {
             pessoaExistente.setTrabalho(novaPessoa.getTrabalho());
         }
 
-        pessoaExistente.setEmpregado(novaPessoa.isEmpregado());
+        if (novaPessoa.getEmpregado() != null) {
+            pessoaExistente.setEmpregado(novaPessoa.getEmpregado());
+        }
 
         return pessoaRepository.save(pessoaExistente);
     }
